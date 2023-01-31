@@ -40,19 +40,24 @@ try:
     back_from_function = get_fruityvice_data(fruit_choice)
     st.dataframe(back_from_function)
   
-
 except URLError as e:
   st.error()
  
-st.stop()
-#connecting to snowflake
-my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from fruit_load_list")
-my_data_rows = my_cur.fetchall()
-st.header("Fruit load list contains:")
-st.dataframe(my_data_rows)
 
+st.header('The fruit load list contains:')
+#snowflake related stuff
+def get_fruit_load_list():
+   with my_cnx.cursor() as my_cur:
+      my_cur.execute("select * from fruit_load_list")
+      return my_cur.fetchall()
+   
+#add a button to get fruit
+if st.button('Get fruit load list'):
+   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+   my_data_rows = get_fruit_load_list 
+   st.dataframe(my_data_rows)
+
+st.stop()
 #adding second box
 add_my_fruit = st.text_input('What fruit would you like to add?')
 st.write('Thanks for adding ', add_my_fruit)
