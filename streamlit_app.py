@@ -46,3 +46,7 @@ st.dataframe(my_data_rows)
 
 #adding second box
 add_my_fruit = st.text_input('What fruit would you like to add?')
+st.write('Thanks for adding ', add_my_fruit)
+
+#this will not work correctly but go with it
+my_cur.execute("insert into fruit_load_list values ('from streamlit')")
