@@ -28,7 +28,7 @@ st.dataframe(fruits_to_show)
 def get_fruityvice_data(this_fruit_choice):
    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" +  this_fruit_choice)
    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-   return st.dataframe(fruityvice_normalized)
+   return fruityvice_normalized
 
 #new section to displayfruityvice api response
 st.header('Fruityvice Fruit Advice')
