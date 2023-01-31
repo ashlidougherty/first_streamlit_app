@@ -66,5 +66,5 @@ def insert_row_snowflake(new_fruit):
 add_my_fruit = st.text_input('What fruit would you like to add?')
 if st.button('Add fruit to the list'):
    my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-   back_from_function = inter_row_snowflake(add_my_fruit)
+   back_from_function = intsert_row_snowflake(add_my_fruit)
    st.text(back_from_function)
